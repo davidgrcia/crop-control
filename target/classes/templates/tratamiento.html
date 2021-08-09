@@ -1,0 +1,63 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Tratamiento</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container individual">
+		<div class="card" style="width: 50%;">
+			<div class="card-body">
+				<h1 class="card-title"
+					th:text=" 'Lote de tratamiento: #'+${tratamiento.getNumlote()}"></h1>
+				<h5 class="card-text"
+					th:text=" 'Cultivo: '+ ${tratamiento.getCultivo().getEspecie()}"
+					th:href="@{/cultivo/ver/{id}(id=${tratamiento.getCultivo().getId()})}"></h5>
+				<h5 class="card-text"
+					th:text=" 'Producto: '+ ${tratamiento.getProducto().getNombre()}"
+					th:href="@{/producto/ver/{id}(id=${tratamiento.getProducto().getId()})}"></h5>
+				<h5 class="card-text"
+					th:text=" 'Fecha de tratamiento: '+ ${tratamiento.getFecha()}"></h5>
+				<h5 class="card-text"
+					th:if="${tratamiento.getFecha_reentrada()}!=null"
+					th:text=" 'Fecha de reentrada: '+ ${tratamiento.getFecha_reentrada()}"></h5>
+				<h5 class="card-text"
+					th:if="${tratamiento.getFecha_recoleccion()}!=null"
+					th:text=" 'Fecha de recoleccion: '+ ${tratamiento.getFecha_recoleccion()}"></h5>
+				<a class="btn btn-warning boton-editar"
+					th:href="@{/tratamiento/editar/{id}(id=${tratamiento.getId()})}">Editar</a>
+				<a class="btn btn-primary boton-ver" th:href="@{/tratamientos}">Ver
+					Todos</a> <a class="btn btn-danger boton-volver" onclick="volver()">Volver</a>
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+function volver() {
+  window.history.back();
+}
+</script>
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>

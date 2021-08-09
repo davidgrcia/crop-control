@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<title>Nuevo Tratamiento</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container">
+		<h2>Nuevo tratamiento</h2>
+
+		<form action="#" th:action="@{/creartratamiento}" method="post">
+			<div class="form-group">
+				<label for="cultivo">Cultivo</label> <select class="form-control"
+					name="cultivo">
+					<option th:value="${cultivo.id}" th:text="${cultivo.especie}"
+						th:each="cultivo: ${cultivos}"></option>
+				</select>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-success boton-nuevo"
+					data-toggle="modal" data-target="#modalCultivo">Nuevo
+					cultivo</button>
+			</div>
+			<div class="form-group">
+				<label for="producto">Producto</label> <select class="form-control"
+					name="producto">
+					<option th:value="${producto.id}" th:text="${producto.nombre}"
+						th:each="producto: ${productos}"></option>
+				</select>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-success boton-nuevo"
+					data-toggle="modal" data-target="#modalProducto">Nuevo
+					producto</button>
+			</div>
+			<div class="form-group">
+				<label for="num_lote">Numero de lote</label> <input type="text"
+					class="form-control" placeholder="Numero de lote" name="numlote"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="fecha">Fecha de tratamiento</label> <input type="date"
+					class="form-control" name="fecha" required>
+			</div>
+			<button type="submit" class="btn btn-primary boton-ver"
+				value="Submit">Añadir</button>
+		</form>
+	</div>
+
+
+
+	<!-- Modal de cultivo -->
+	<div class="modal fade" id="modalCultivo" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Añadir nuevo
+						cultivo</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form action="#" th:action="@{/crearcultivotratamiento}"
+						th:object="${cultivo}" method="post">
+						<div class="form-group">
+							<label for="especie">Especie</label> <input type="text"
+								th:field="*{especie}" class="form-control" id="especie" required>
+						</div>
+						<div class="form-group">
+							<label for="variedad">Variedad</label> <input type="text"
+								th:field="*{variedad}" class="form-control" id="variedad"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="fecha_plantado">Fecha plantado</label> <input
+								type="date" th:field="*{fecha_plantado}" class="form-control"
+								id="fecha_plantado" value="${cultivo.getFecha_plantado()}"
+								required>
+						</div>
+						<div class="form-group">
+							<label for="zona">Zona</label> <input type="text"
+								th:field="*{zona}" class="form-control" id="zona">
+						</div>
+						<button type="submit" class="btn btn-primary boton-nuevo"
+							value="Submit">Añadir</button>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal de producto -->
+	<div class="modal fade" id="modalProducto" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Añadir nuevo
+						producto</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<form action="#" th:action="@{/crearproductotratamiento}"
+						th:object="${producto}" method="post">
+						<div class="form-group">
+							<label for="nombre">Nombre</label> <input type="text"
+								th:field="*{nombre}" class="form-control" id="nombre"
+								placeholder="Nombre" required>
+						</div>
+						<div class="form-group">
+							<label for="descripcion">Descripcion</label>
+							<textarea th:field="*{descripcion}" class="form-control"
+								id="descripcion" placeholder="Descripcion"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="plazo_reentrada">Plazo reentrada</label> <input
+								type="number" th:field="*{plazo_reentrada}" class="form-control"
+								id="plazo_reentrada" placeholder="0" min="0" required>
+						</div>
+						<div class="form-group">
+							<label for="plazo_recoleccion">Plazo recoleccion</label> <input
+								type="number" th:field="*{plazo_recoleccion}"
+								class="form-control" id="plazo_recoleccion" placeholder="0"
+								min="0" required>
+						</div>
+						<button type="submit" class="btn btn-primary boton-nuevo"
+							value="Submit">Añadir</button>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Cerrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

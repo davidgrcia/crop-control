@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Tratamientos En Vigor</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS y JS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container-fluid cabecera text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h1>Tratamientos en vigor</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container-fluid p-5">
+		<div class="row justify-content-around p-t-5">
+			<div class="col-3 order-2">
+				<h4>Búsqueda</h4>
+				<form action="#" th:action="@{/fechavigorordenada}" method="post">
+					<input class="form-control" type="date" name="fechavigor"
+						id="fecha-vigor" required>
+					<h4>Ordenación</h4>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="option" id="1"
+							value="1" checked> <label class="form-check-label"
+							for="radio1"> Sin ordenacion </label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="option" id="2"
+							value="2"> <label class="form-check-label" for="radio2">
+							Ordenar por especie </label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="option" id="3"
+							value="3"> <label class="form-check-label" for="radio3">
+							Ordenar por fecha de reentrada </label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="option" id="4"
+							value="4"> <label class="form-check-label" for="radio4">
+							Ordenar por fecha de recoleccion </label>
+					</div>
+
+					<button type="submit" class="btn btn-primary boton-buscar"
+						value="Submit">Buscar</button>
+				</form>
+				<div class="col right">
+					<a class="btn btn-danger boton-volver" href="/tratamientos"
+						role="button">Volver a todos</a>
+				</div>
+			</div>
+			<div class="col-md-8 order-md-1">
+				<table class="table table-hover" id="table">
+					<thead>
+						<tr>
+							<th>Cultivo</th>
+							<th>Producto</th>
+							<th>Numero de lote</th>
+							<th>Fecha</th>
+							<th>Fecha reentrada</th>
+							<th>Fecha recoleccion</th>
+							<th>Acciones</th>
+						</tr>
+					<thead>
+					<tbody>
+						<tr th:each="tratamiento: ${tratamientos}">
+							<td th:text="${tratamiento.getCultivo().getEspecie()}" />
+							<td th:text="${tratamiento.getProducto().getNombre()}" />
+							<td th:text="${tratamiento.getNumlote()}" />
+							<td th:text="${tratamiento.getFecha()}" />
+							<td th:text="${tratamiento.getFecha_reentrada()}" />
+							<td th:text="${tratamiento.getFecha_recoleccion()}" />
+							<td><a class="btn btn-primary boton-ver"
+								th:href="@{/tratamiento/ver/{id}(id=${tratamiento.getId()})}">Ver</a>
+								<a class="btn btn-warning boton-editar"
+								th:href="@{/tratamiento/editar/{id}(id=${tratamiento.getId()})}">Editar</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
+

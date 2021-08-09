@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Nuevo cultivo</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container">
+		<h2>Nuevo cultivo</h2>
+
+		<form action="#" th:action="@{/crearcultivo}" th:object="${cultivo}"
+			method="post">
+			<div class="form-group">
+				<label for="especie">Especie</label> <input type="text"
+					th:field="*{especie}" class="form-control" id="especie" required>
+			</div>
+			<div class="form-group">
+				<label for="variedad">Variedad</label> <input type="text"
+					th:field="*{variedad}" class="form-control" id="variedad" required>
+			</div>
+			<div class="form-group">
+				<label for="fecha_plantado">Fecha plantado</label> <input
+					type="date" th:field="*{fecha_plantado}" class="form-control"
+					id="fecha_plantado" value="${cultivo.getFecha_plantado()}" required>
+			</div>
+			<div class="form-group">
+				<label for="zona">Zona</label> <input type="text" th:field="*{zona}"
+					class="form-control" id="zona">
+			</div>
+			<button type="submit" class="btn btn-primary boton-ver"
+				value="Submit">Añadir</button>
+		</form>
+	</div>
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<title>Producto</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+
+	<div class="container individual">
+		<div class="card" style="width: 50%;">
+			<div class="card-body">
+				<h1 class="card-title" th:text="${producto.getNombre()}"></h1>
+				<h5 class="card-text" th:text="${producto.getDescripcion()}"></h5>
+				<h5 class="card-text"
+					th:text=" 'Plazo de reentrada: '+ ${producto.getPlazo_reentrada()} + ' días'"></h5>
+				<h5 class="card-text"
+					th:text=" 'Plazo de recolección: ' +${producto.getPlazo_recoleccion()} + ' días'"></h5>
+				<a class="btn btn-warning boton-editar"
+					th:href="@{/producto/editar/{id}(id=${producto.getId()})}">Editar</a>
+				<a class="btn btn-primary boton-ver" th:href="@{/productos}">Ver
+					Todos</a>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>

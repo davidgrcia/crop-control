@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container">
+		<h2>Editar tratamiento</h2>
+
+		<form action="#" th:action="@{/editartratamiento}"
+			th:object="${tratamiento}" method="post">
+			<div class="form-group">
+				<input type="hidden" th:field="*{id}" class="form-control">
+				<label for="cultivo">Cultivo</label> <select class="form-control"
+					name="cultivo">
+					<option th:field="*{cultivo}" th:value="${cultivo.id}"
+						th:text="${cultivo.especie}" th:each="cultivo: ${cultivos}"></option>
+				</select>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-success boton-nuevo"
+					data-toggle="modal" data-target="#modalCultivo">Nuevo
+					cultivo</button>
+			</div>
+			<div class="form-group">
+				<label for="producto">Producto</label> <select class="form-control"
+					name="producto">
+					<option th:field="*{producto}" th:value="${producto.id}"
+						th:text="${producto.nombre}" th:each="producto: ${productos}"></option>
+				</select>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-success boton-nuevo"
+					data-toggle="modal" data-target="#modalProducto">Nuevo
+					producto</button>
+			</div>
+			<div class="form-group">
+				<label for="numlote">Numero de lote</label> <input type="text"
+					th:field="*{numlote}" class="form-control"
+					placeholder="Numero de lote" name="numlote" required>
+			</div>
+			<div class="form-group">
+				<label for="fecha">Fecha de tratamiento</label> <input type="date"
+					th:field="*{fecha}" class="form-control" name="fecha" required>
+			</div>
+			<button type="submit" class="btn btn-primary boton-ver"
+				value="Submit">Editar</button>
+		</form>
+		<a class="btn btn-danger boton-volver right-button" onclick="volver()">Volver</a>
+	</div>
+
+	<script>
+function volver() {
+  window.history.back();
+}
+</script>
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

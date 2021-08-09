@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Index</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<!-- Begin page content -->
+	<main role="main">
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<div class="container">
+				<h1 class="display-3">Comienza a gestionar tus cultivos</h1>
+				<p>En esta aplicación podrás controlar los plazos de seguridad,
+					tales como los de reentrada en los que no se permite a ninguna
+					persona entrar en el recinto o de recoleccion en los que no se
+					pueden recolectar ni consumir los productos de las plantas
+					tratadas.</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<!-- Example row of columns -->
+			<div class="row">
+				<div class="col-md-4">
+					<h2>Mis productos</h2>
+					<p>En esta vista podrás añadir, ver y editar los productos
+						fitosanitarios que desees.</p>
+					<p>
+						<a class="btn btn-secondary boton-ver" href="/productos"
+							role="button">Ver más </a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>Mis cultivos</h2>
+					<p>En esta sección podrás añadir, ver y editar los cultivos que
+						desees.</p>
+					<p>
+						<a class="btn btn-secondary boton-ver" href="/cultivos"
+							role="button">Ver más</a>
+					</p>
+				</div>
+				<div class="col-md-4">
+					<h2>Mis tratamientos</h2>
+					<p>En esta página además de añadir, ver y editar tratamientos,
+						también podrás filtrar por fecha en vigor y ordenar según lo que
+						necesites.</p>
+					<p>
+						<a class="btn btn-secondary boton-ver" href="/tratamientos"
+							role="button">Ver más </a>
+					</p>
+				</div>
+			</div>
+
+			<hr>
+
+		</div>
+		<!-- /container -->
+
+	</main>
+
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+<title>Tratamientos</title>
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container-fluid cabecera text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h1>Tratamientos</h1>
+				</div>
+				<div class="col right">
+					<a class="btn btn-success boton-nuevo" href="/tratamiento/nuevo"
+						role="button">Añadir Tratamiento</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container p-5">
+
+		<div class="row justify-content-end">
+			<div class="btn-group">
+				<button type="button"
+					class="btn btn-info dropdown-toggle boton-ordenar"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Ordenar Por</button>
+
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="/tratamientosPorFechaReentrada">Fecha
+						de reentrada</a> <a class="dropdown-item"
+						href="/tratamientosPorFechaRecoleccion">Fecha de recoleccion</a> <a
+						class="dropdown-item" href="/tratamientosPorEspecie">Especie</a>
+				</div>
+			</div>
+			<a class="btn btn-danger boton-buscar" href="/tratamientosenvigor"
+				role="button">Buscar en vigor</a>
+		</div>
+
+
+		<table class="table table-hover" id="table">
+			<thead>
+				<tr>
+					<th>Cultivo</th>
+					<th>Producto</th>
+					<th>Numero de lote</th>
+					<th>Fecha</th>
+					<th>Fecha reentrada</th>
+					<th>Fecha recoleccion</th>
+					<th>Acciones</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="tratamiento: ${tratamientos}">
+					<td th:text="${tratamiento.getCultivo().getEspecie()}" />
+					<td th:text="${tratamiento.getProducto().getNombre()}" />
+					<td th:text="${tratamiento.getNumlote()}" />
+					<td th:text="${tratamiento.getFecha()}" />
+					<td th:text="${tratamiento.getFecha_reentrada()}" />
+					<td th:text="${tratamiento.getFecha_recoleccion()}" />
+					<td><a class="btn btn-primary boton-ver"
+						th:href="@{/tratamiento/ver/{id}(id=${tratamiento.getId()})}">Ver</a>
+						<a class="btn btn-warning boton-editar"
+						th:href="@{/tratamiento/editar/{id}(id=${tratamiento.getId()})}">Editar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
+

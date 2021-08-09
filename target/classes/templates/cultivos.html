@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Cultivos</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+
+	<div class="container-fluid cabecera text-white">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h1>Cultivos</h1>
+				</div>
+				<div class="col right">
+					<a class="btn btn-success boton-nuevo" href="/cultivo/nuevo"
+						role="button">Añadir Cultivo</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container p-5">
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Especie</th>
+					<th scope="col">Variedad</th>
+					<th scope="col">Fecha plantado</th>
+					<th scope="col">Zona</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="cultivo: ${cultivos}">
+					<td th:text="${cultivo.getEspecie()}" />
+					<td th:text="${cultivo.getVariedad()}" />
+					<td th:text="${cultivo.getFecha_plantado()}" />
+					<td th:text="${cultivo.getZona()}" />
+					<td><a class="btn btn-primary boton-ver"
+						th:href="@{/cultivo/ver/{id}(id=${cultivo.getId()})}">Ver</a> <a
+						class="btn btn-warning boton-editar"
+						th:href="@{/cultivo/editar/{id}(id=${cultivo.getId()})}">Editar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

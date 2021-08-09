@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Productos</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+
+	<div class="container-fluid text-white cabecera">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h1>Productos</h1>
+				</div>
+				<div class="col right">
+					<a class="btn btn-success boton-nuevo" href="/producto/nuevo"
+						role="button">Añadir Producto</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container p-5">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">Nombre</th>
+					<th scope="col">Plazo reentrada</th>
+					<th scope="col">Plazo recolección</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			<thead>
+			<tbody>
+				<tr th:each="producto: ${productos}">
+					<td th:text="${producto.getNombre()}" />
+					<td th:text="${producto.getPlazo_reentrada()} + ' días'" />
+					<td th:text="${producto.getPlazo_recoleccion()} + ' días'" />
+					<td><a class="btn btn-primary boton-ver"
+						th:href="@{/producto/ver/{id}(id=${producto.getId()})}">Ver</a> <a
+						class="btn btn-warning boton-editar"
+						th:href="@{/producto/editar/{id}(id=${producto.getId()})}">Editar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	<!-- JavaScript opcional -->
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+

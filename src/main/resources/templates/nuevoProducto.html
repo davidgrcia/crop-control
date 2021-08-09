@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Nuevo Producto</title>
+
+<!-- Bootstrap -->
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} " />
+
+<!-- CSS personalizado  -->
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<div th:insert="header :: header"></div>
+	<div class="container">
+		<h2>Nuevo producto</h2>
+
+		<form action="#" th:action="@{/crearproducto}" th:object="${producto}"
+			method="post">
+			<div class="form-group">
+				<label for="nombre">Nombre</label> <input type="text"
+					th:field="*{nombre}" class="form-control" id="nombre"
+					placeholder="Nombre" required>
+			</div>
+			<div class="form-group">
+				<label for="descripcion">Descripcion</label>
+				<textarea th:field="*{descripcion}" class="form-control"
+					id="descripcion" placeholder="Descripcion"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="plazo_reentrada">Plazo reentrada</label> <input
+					type="number" th:field="*{plazo_reentrada}" class="form-control"
+					id="plazo_reentrada" placeholder="0" min="0" required>
+			</div>
+			<div class="form-group">
+				<label for="plazo_recoleccion">Plazo recoleccion</label> <input
+					type="number" th:field="*{plazo_recoleccion}" class="form-control"
+					id="plazo_recoleccion" placeholder="0" min="0" required>
+			</div>
+			<button type="submit" class="btn btn-primary boton-ver"
+				value="Submit">Añadir</button>
+		</form>
+	</div>
+
+
+
+	<!-- JavaScript opcional -->
+
+	<script th:src="@{/webjars/jquery/3.0.0/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.12.9-1/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+</body>
+</html>
+
